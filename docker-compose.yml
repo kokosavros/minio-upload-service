@@ -1,0 +1,26 @@
+version: '3'
+services:
+  minio:
+    image: "minio/minio"
+    expose:
+      - "9000"
+    ports:
+      - "9000:9000"
+    volumes:
+      - /Users/lampros/Desktop/minio/data:/data
+      - /Users/lampros/Desktop/minio/config:/root/.minio
+    environment:
+      - MINIO_ACCESS_KEY=MINIO_ACCESS_KEY
+      - MINIO_SECRET_KEY=MINIO_SECRET_KEY
+    container_name: minio-server
+    command: server /data
+  minio-upload-api:
+    build: .
+    ports:
+     - "8000:8000"
+    environment:
+      - MINIO_ACCESS_KEY=MINIO_ACCESS_KEY
+      - MINIO_SECRET_KEY=MINIO_SECRET_KEY
+    depends_on:
+      - minio
+    container_name: upload-api
