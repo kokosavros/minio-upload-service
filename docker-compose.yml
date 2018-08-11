@@ -14,7 +14,7 @@ services:
       - MINIO_SECRET_KEY=MINIO_SECRET_KEY
     container_name: minio-server
     command: server /data
-  minio-upload-api:
+  minio-upload-service:
     build: .
     ports:
      - "8000:8000"
@@ -23,4 +23,4 @@ services:
       - MINIO_SECRET_KEY=MINIO_SECRET_KEY
     depends_on:
       - minio
-    container_name: upload-api
+    container_name: minio-upload-service
