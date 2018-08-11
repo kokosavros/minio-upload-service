@@ -1,5 +1,5 @@
 {
-  "name": "minio-upload-api",
+  "name": "minio-upload-service",
   "version": "0.0.1",
   "private": true,
   "scripts": {
